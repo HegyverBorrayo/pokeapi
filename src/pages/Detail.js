@@ -39,27 +39,18 @@ export class Detail extends Component {
     }
 
     _getImage = (imagesA = {}) => {
-        const objImg = Object.values(imagesA)
-        let urlImg;
-        const imagePoke = objImg.filter(item => {
-            const dream_world = item.dream_world
-            if (dream_world) {
-                urlImg = dream_world.front_default
-            }
-        })
-
-        if (urlImg) {
+        const otherImg = imagesA.other
+        if (typeof(otherImg) !== "undefined") {
+            let imgDefault = otherImg.dream_world.front_default
+            return imgDefault
         }
-        return urlImg
     }
 
     render() {
         const { id, name, types, sprites } = this.state.pokemon
         const style = `card ${this._getType(types)}`
         const image = this._getImage(sprites)
-        console.log(this.state.pokemon)
         return (
-                
             <div className={style}>
                 <div className="thumbnail">
                     <img src={image}/>
