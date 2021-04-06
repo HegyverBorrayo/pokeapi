@@ -1,56 +1,16 @@
 import { useEffect, useState } from "react";
+import { Switch, Route } from 'react-router-dom'
 import PokemonThumnail from "./components/PokemonThumnail";
+import { Detail } from "./pages/Detail";
+import Home from "./pages/Home";
 
 function App() {
-
-  const [allPokemons, setAllPokemons] = useState([])
-  const [loadMore, setLoadMore] = useState('https://pokeapi.co/api/v2/pokemon?limit=20')
-
-  const getAllPokemons = async() => {
-    const res = await fetch(loadMore)
-    const data = await res.json()
-
-    setLoadMore(data.next)
-    
-    function createPokemonObject (results) {
-      results.forEach( async pokemon => {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
-        const data = await res.json()
-
-        setAllPokemons(currentList => [...currentList, data])
-        
-      })
-    }
-    
-    createPokemonObject(data.results)
-    await console.log(allPokemons)
-  }
-
-  useEffect(() => {
-    getAllPokemons()
-  }, [])
-
-  const _loadMore = (e) => {
-    getAllPokemons()
-  }
-
   return (
     <div className='app-container'>
-      <h1>Pokemon Evolution</h1>
-      <div className='pokemon-container'>
-        <div className='all-container'>
-          {allPokemons.map((pokemon, index) =>
-            <PokemonThumnail 
-              id={pokemon.id}
-              name={pokemon.name}
-              image={pokemon.sprites.other.dream_world.front_default}
-              type={pokemon.types[0].type.name}
-              key={index}
-              />
-          )}
-        </div>
-        <button className='load-more' onClick={_loadMore}>Load more</button>
-      </div>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route path='/detail/:pokemonId' component={Detail} />
+      </Switch>
     </div>
   );
 }
