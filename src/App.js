@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { Switch, Route } from 'react-router-dom'
-import PokemonThumnail from "./components/PokemonThumnail";
 import { Detail } from "./pages/Detail";
 import Home from "./pages/Home";
 

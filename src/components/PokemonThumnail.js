@@ -6,7 +6,7 @@ const PokemonThumnail = ({id, name, image, type}) => {
     return (
         
         <div className={style}>
-            <Link to={`/detail/${id}`}>
+            <Link to={`/detail/${id}`} className="href-no-style">
                 <div className="number">
                     <small>#0{id}</small>
                 </div>

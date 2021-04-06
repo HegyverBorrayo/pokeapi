@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Component } from 'react'
 import PokemonThumnail from "../components/PokemonThumnail";
 
 function Home() {
@@ -32,7 +31,7 @@ function Home() {
     
     return (
         <div>
-            <h1>Pokemon Evolution</h1>
+            <h1 className="text-center">Pokemon Evolution</h1>
             <div className='pokemon-container'>
                 <div className='all-container'>
                 {allPokemons.map((pokemon, index) =>
